@@ -1,19 +1,15 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   op.h                                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/11/09 18:34:10 by bodibon     ###    #+. /#+    ###.fr     */
-/*                                                                            */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   op.h                                             .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: bodibon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2018/11/08 14:03:43 by bodibon      #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/08 18:52:34 by bodibon     ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
 /* ************************************************************************** */
-
-/*
-** Toutes les tailles sont en octets.
-** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
-*/
 
 #define IND_SIZE				2
 #define REG_SIZE				4
@@ -48,9 +44,6 @@
 #define NBR_LIVE				21
 #define MAX_CHECKS				10
 
-/*
-**
-*/
 
 typedef char	t_arg_type;
 
@@ -59,9 +52,6 @@ typedef char	t_arg_type;
 #define T_IND					4
 #define T_LAB					8
 
-/*
-**
-*/
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
