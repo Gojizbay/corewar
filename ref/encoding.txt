@@ -22,3 +22,74 @@
 000008a7
 
 filling bytes -> padding ?
+===============================================================================
+
+INSTRUCTIONS
+
+REG 1 -> 01
+DIR 2 -> 10
+IND 3 -> 11
+
+
+reg always one byte
+dir 2 or 4 bytes (if scalar that needs 4 bytes)
+ind always 2 bytes
+0x00 0b 68 01 00 0f 00 01
+0x07 06 64 01 00 00 00 00 01
+0x0f 01 00 00 00 01
+0x14 09 ff fb
+
+l2:		sti r1,%:live,%1
+		and r1,%0,r1
+live:	live %1
+		zjmp %:live
+
+-------------------------------------------------------------------------------
+
+l2:		sti r1,%:live,%1
+0b 68 01 00 0f 00 01
+
+0b -> opcode = 11 -> sti
+68 -> encoding byte 01101000 -> REG, DIR, DIR
+01 -> r1
+00 0f -> %:live case PC is at 0b, hence 15 bytes away
+00 01 -> %1
+
+
+r1 -> 01
+THERE ARE 16 REGISTERS PER PROCESS
+SO WE ENCODE A REGISTER ON 1 BYTE FROM 01 to 10
+
+%:live -> 00 0f
+encoded on 2 bytes cause we can only adress in a 512bytes range (0x0200)
+
+%1 -> 00 01
+the third parameter is a DIR, which is scalar, so encoded on 4 bits, here the 
+two last bit have been cut.
+
+-------------------------------------------------------------------------------
+
+and r1,%0,r1
+06 64 01 00 00 00 00 01
+
+06 -> and
+64 -> 01100100 -> 01 10 01 00 -> REG, DIR, REG
+01 -> r1
+00 00 00 00 -> %0
+01 -> r1
+
+-------------------------------------------------------------------------------
+
+live:	live %1
+01 00 00 00 01
+
+01 -> live
+00 00 00 01 -> %1
+
+------------------------------------------------------------------------------
+
+zjmp %:live
+09 ff bb
+
+09 -> zjmp
+ff bb -> 65467, (PC = 20 + (65467 % IDX_MOD)) program_size = 22 -> 0x89f

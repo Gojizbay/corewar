@@ -1,0 +1,57 @@
+-------------------------------------------------------------------------------
+|1|
+00110001 00000000 00000000
+31 00 00
+Store the number 0 in memory location 0
+-------------------------------------------------------------------------------
+|2|
+00110001 00000001 00000001
+31 01 01
+Store the number 1 in memory location 1
+-------------------------------------------------------------------------------
+|3|
+00110011 00000001 00000010
+33 01 02
+Store the value of memory location 1 in memory location 2
+-------------------------------------------------------------------------------
+|4|
+01010001 00001011 00000010
+51 0B 02
+Subtract the number 11 from the value in memory location 2
+-------------------------------------------------------------------------------
+|5|
+00100010 00000010 00001000
+22 02 08
+If the value in memory location 2 is the number 0, continue with instruction 9
+-------------------------------------------------------------------------------
+|6|
+01000011 00000001 00000000
+43 01 00
+Add the value of memory location 1 to memory location 0
+-------------------------------------------------------------------------------
+|7|
+01000001 00000001 00000001
+41 01 01
+Add the number 1 to the value of memory location 1
+-------------------------------------------------------------------------------
+|8|
+00010000 00000010 00000000
+10 02 00
+Continue with instruction 3
+-------------------------------------------------------------------------------
+|9|
+01100010 00000000 00000000
+62 00 00
+Output the value of memory location 0
+-------------------------------------------------------------------------------
+
+OP | CODE
+
+store number in memory loc | 49 (0x31)
+store value of memory loc in memory loc | 51 (0x33)
+substract value of memory loc in memory loc | 81 (0x51)
+add the value of memory loc to memory loc | 67 (0x43)
+add number to the value of memory loc | 65 (0x41)
+continue with instruction at memlock | 16 (0x10)
+output the value of memory loc | 96 (0x62)
+if the value of memory loc is 0 then do instruction at memory loc | 34 (0x22)

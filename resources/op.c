@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2018/11/09 18:34:09 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/03 19:18:24 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,41 @@ t_op    op_tab[17] =
 	{0, 0, {0}, 0, 0, 0, 0, 0}
 };
 
-/* - nombre de cycle de chaque instruction -> 10
- * - representation mnemonique -> live
- * - nombre de parametres -> 1
- * - types de parametres possibles -> T_DIR
- * - opcode -> 1
- * - 
+/*
+ * [1] live NO_PLAYER on 4 bytes (10 cycles) -> NO_PLAYER is alive | 
+ * [2] ld X (scalar or index) on 4/2 bytes, REG (5 cycles) -> load X into REG
+ * [3] st X (REG1 || IND, address) on 1/2 bytes, REG -> stores the value of X into REG
+ * [4] add X (REG), Y (REG), Z (REG) -> add X and Y values and stores it into Z
+ * [5] sub X (REG), Y (REG), Z (REG) -> sub X and Y values and stores it into Z
+ * [6] and X (REG, IND, DIR), Y (REG, IND, DIR), Z (REG) ->  X & Y value and stores it into Z
+ * [7] or X (REG, IND, DIR), Y (REG, IND, DIR), Z (REG) ->  X | Y value and stores it into Z
+ * [8] xor X (REG, IND, DIR), Y (REG, IND, DIR), Z (REG) ->  X ^ Y value and stores it into Z
+ *		[9] zjmp X (index on 2 bytes), jumps to the index if carry == 1
+ * [10] ldi X (index), Y (index), REG, add X and Y values uses the result as an address, reads a value of REG_SIZE and  stores it into REG
+ * [11] sti REG, X (index), Y (index), add X and Y use this value as an address to store REG value
+ * [12] fork X (index), create a new process which inherits state of his father except for his PC which will be at PC + (X % IDX_MOD)
+ * [13] lld X (scalar or index) on 4/2 bytes, REG (5 cycles) -> long load X into REG (same as ld without % IDX_MOD)
+ * [14] lldi X (index), Y (index), REG, add X and Y values and stores it into REG (no modulo to addresses)
+ * [15] lfork X (index), create a new process which inherits state of his father except for his PC which will be at PC + X
+ * [16] aff REG -> REG value that is interpreted % 256 and should be output on STDOUT
+*/
+
+/*
  *
+ * MOD CARRY
+ * [2] ld 0
+ * [4] add 0
+ * [5] sub 0
+ * [6] and 0
+ * [7] or 0
+ * [8] xor 0
+ * [13] lld 0
+ * [14] lldi 1
  *
+ * DONT MOD CARRY
+ * [10] ldi 1
  *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
+ * NEEDS CARRY TO BE 1
+ * [9] zjmp 1
  *
  * */

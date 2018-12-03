@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/11/09 18:34:10 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/03 19:18:22 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 ** Toutes les tailles sont en octets.
 ** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
 */
+
+// length in bits
 
 #define IND_SIZE				2
 #define REG_SIZE				4
@@ -24,12 +26,26 @@
 # define DIR_CODE				2
 # define IND_CODE				3
 
+/*
+ * there a 16 registers per processm thus when addressing register we only
+ * have r0 to r15 we only need 0x00 to 0x0f, ie 1 byte.
+ *
+ * the champ max size (the instruction set size) is 682 bytes, thus when
+ * addressing process in memory memory we need 0x00 to 0x02AA, hence 2 bytes,
+ * so when using DIR to refer to a label or IND it takes 2 bytes.
+ *
+ * we need 4 bytes for scalar values.
+ *
+ * */
 
 #define MAX_ARGS_NUMBER			4
 #define MAX_PLAYERS				4
 #define MEM_SIZE				(4*1024)
+// 4096
 #define IDX_MOD					(MEM_SIZE / 8)
+// 512
 #define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
+// 682
 
 #define COMMENT_CHAR			'#'
 #define LABEL_CHAR				':'
