@@ -6,7 +6,7 @@
 /*   By: bodibon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 11:41:31 by bodibon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 18:21:10 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/13 19:20:11 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,6 +74,10 @@ void	start_visualizer(t_vm *vm)
 	init_pair(9, COLOR_BLACK, COLOR_RED);
 	init_pair(10, COLOR_BLACK, COLOR_YELLOW);
 	init_pair(11, COLOR_CYAN, COLOR_CYAN);
+	init_pair(12, COLOR_WHITE, COLOR_GREEN);
+	init_pair(13, COLOR_WHITE, COLOR_BLUE);
+	init_pair(14, COLOR_WHITE, COLOR_RED);
+	init_pair(15, COLOR_WHITE, COLOR_YELLOW);
 	display_memory(vm);
 }
 

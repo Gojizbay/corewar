@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/19 18:57:47 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 18:21:07 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/13 19:20:14 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,15 +40,11 @@ int				find_next_exec_cycle(t_proc *proc, t_vm *vm)
 	t_opmodvm	*optab;
 
 	optab = get_op_tab_vm();
-//	if (vm->vis)
-//		unset_cursor_color(vm->win->matrix, proc->id, proc->pc % MEM_SIZE,
-//				vm->mem[proc->pc % MEM_SIZE]);
-	ft_printf("%x\n", proc->pc);
+	if (vm->vis)
+		unset_cursor_color(vm->win->matrix, proc->id, proc->pc % MEM_SIZE);
 	proc->pc = (proc->pc + proc->size) % MEM_SIZE;
 	if (vm->vis)
-		set_cursor_color(vm->win->matrix, proc->id,
-				(proc->pc + proc->size) % MEM_SIZE,
-				vm->mem[(proc->pc + proc->size) % MEM_SIZE]);
+		set_cursor_color(vm->win->matrix, proc->id, proc->pc);
 	proc->type = vm->mem[proc->pc];
 	if (proc->type < 1 || proc->type > 16)
 	{

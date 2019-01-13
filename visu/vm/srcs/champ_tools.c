@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/18 19:59:21 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 18:21:04 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/13 19:20:19 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,13 +54,8 @@ static t_champ	*read_champ(int fd, t_champ *champ, t_vm *vm)
 		{
 			vm->mem[j++ + champ->mempos] = bf[i++];
 			if (vm->vis)
-			{
 				write_matrix(vm->win->matrix, champ->id,
 						j - 1 + champ->mempos, bf[i - 1]);
-				if (i == 0x891)
-					set_cursor_color(vm->win->matrix, champ->id,
-						j - 1 + champ->mempos, bf[i - 1]);
-			}
 		}
 	else
 		return (NULL);

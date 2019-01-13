@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/25 11:42:00 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 17:10:48 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/13 19:20:13 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,7 @@ int		ft_live(t_proc *proc, t_vm *vm)
 {
 	t_champ		*tmp;
 
+//	highlight_live(vm, proc);
 	tmp = vm->champ;
 	verbose_ope(0, 0, proc, vm);
 	proc->lastlive = vm->cycle;

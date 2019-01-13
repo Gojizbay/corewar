@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/21 17:43:20 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 18:21:05 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/13 19:20:16 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -251,6 +251,7 @@ void					verb_aff(int val1, int val2, t_proc *proc);
 **visualizer
 */
 # include <ncurses.h>
+# include <pthread.h>
 
 # define WRAP_W 303
 # define WRAP_H 72
@@ -285,9 +286,18 @@ void					write_matrix2(WINDOW *matrix, int start, int val,
 		int proc_id);
 void					update_visu(t_vm *vm, char ch);
 void					set_cursor_color(WINDOW *matrix, int proc_id,
-		unsigned int pos, unsigned char c);
+		unsigned int pos);
 void					unset_cursor_color(WINDOW *matrix, int proc_id,
-		unsigned int pos, unsigned char c);
+		unsigned int pos);
+
+typedef struct			s_thdata
+{
+	t_vm				*vm;
+	int					proc_pc;
+	int					proc_id;
+}						t_thdata;
+
+void					highlight_live(t_vm *vm, t_proc *proc);
 
 /*
 **this is the end

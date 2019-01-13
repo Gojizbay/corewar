@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/15 12:58:42 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 15:56:06 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/13 19:20:17 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -115,11 +115,11 @@ int			main(int ac, char **av)
 		start_visualizer(vm);
 	if (get_champs(ac, i, vm, av))
 		return (free_all(vm));
-	if (vm->vis)
+/*	if (vm->vis)
 	{
 		getch();
 		nodelay(stdscr, TRUE);
-	}
+	}*/
 	else if (introduce_contestants(vm))
 		return (free_all(vm));
 	if (launch_vm(vm) == vm->dump && vm->vis == 0 && vm->dump >= 0)

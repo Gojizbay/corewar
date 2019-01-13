@@ -6,7 +6,7 @@
 /*   By: bodibon <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 18:26:05 by bodibon      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 18:57:54 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/13 19:20:22 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,6 +47,8 @@ void	fill_son(t_proc *son, t_proc *proc, t_vm *vm, int pc)
 	son->id = proc->id;
 	son->pc = (MEM_SIZE + pc)
 		% MEM_SIZE;
+	if (vm->vis)
+		set_cursor_color(vm->win->matrix, son->id, son->pc);
 	son->type = vm->mem[son->pc];
 	son->carry = proc->carry;
 	son->lastlive = proc->lastlive;

@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 11:11:26 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 18:21:02 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/13 19:20:21 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,8 +95,12 @@ int		ft_zjmp(t_proc *proc, t_vm *vm)
 	verbose_ope(proc->paramval[0], proc->carry, proc, vm);
 	if (proc->carry == 1)
 	{
-		val = proc->paramval[0] % IDX_MOD;
+		if (vm->vis)
+			unset_cursor_color(vm->win->matrix, proc->id, proc->pc % MEM_SIZE);
+		val = proc->paramval[0] % IDX_MOD;	
 		proc->pc = (MEM_SIZE + (proc->pc + val)) % MEM_SIZE;
+		if (vm->vis)
+			set_cursor_color(vm->win->matrix, proc->id, proc->pc);
 		proc->size = 0;
 		return (1);
 	}
