@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/21 17:43:20 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 19:20:16 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 19:41:37 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <fcntl.h>
+# include <errno.h>
 
 # define IND_SIZE				2
 # define REG_SIZE				4
@@ -273,22 +274,38 @@ typedef struct			s_win
 	WINDOW				*wrap;
 	WINDOW				*matrix;
 	WINDOW				*info;
+	short				cycles_per_sec;
 }						t_win;
 
 t_win					*init_windows(void);
+void					init_colors(void);
+void					init_matrix(t_vm *vm);
+void					init_visualizer(t_vm *vm);
 void					start_visualizer(t_vm *vm);
-void					close_windows(t_win *win);
+
 char					nibble_to_char(unsigned char ch);
-void					display_memory(t_vm *vm);
 void					write_matrix(WINDOW *matrix, int id,
 		unsigned int pos, unsigned char c);
 void					write_matrix2(WINDOW *matrix, int start, int val,
 		int proc_id);
-void					update_visu(t_vm *vm, char ch);
 void					set_cursor_color(WINDOW *matrix, int proc_id,
 		unsigned int pos);
 void					unset_cursor_color(WINDOW *matrix, int proc_id,
 		unsigned int pos);
+
+int						write_info_players(t_vm *vm);
+void					write_info_status(WINDOW *info);
+void					write_info_speed(t_vm *vm);
+void					write_info_par(t_vm *vm);
+
+void					write_info_cycle(t_vm *vm);
+void					change_speed(t_vm *vm, char ch);
+void					update_visu(t_vm *vm, char ch);
+void					close_windows(t_win *win);
+void					exit_error_visualizer(t_win *win);
+
+
+extern pthread_mutex_t	g_mutex;
 
 typedef struct			s_thdata
 {

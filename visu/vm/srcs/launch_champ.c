@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/20 17:56:35 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 19:20:18 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 15:09:27 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -97,10 +97,7 @@ int				launch_vm(t_vm *vm)
 	j = 0;
 	first_cycle(vm, 0, -1);
 	if (vm->vis)
-	{
-		getch();
-		nodelay(stdscr, TRUE);
-	}
+		start_visualizer(vm);
 	if (!vm->dump)
 		return (vm->cycle);
 	while (vm->procnb > 0 && (ch = getch()))

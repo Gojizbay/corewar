@@ -6,12 +6,14 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/15 12:58:42 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 19:20:17 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 17:44:10 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "op_vm.h"
+
+//pthread_mutex_t		g_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 t_header	*init_head(void)
 {
@@ -99,7 +101,7 @@ int			check_champs_nb(t_vm *vm)
 
 int			main(int ac, char **av)
 {
-	int			i;
+	int			i;	
 	t_vm		*vm;
 
 	vm = init_vm();
@@ -112,14 +114,9 @@ int			main(int ac, char **av)
 	else
 		return (print_man(vm));
 	if (vm->vis)
-		start_visualizer(vm);
+		init_visualizer(vm);
 	if (get_champs(ac, i, vm, av))
 		return (free_all(vm));
-/*	if (vm->vis)
-	{
-		getch();
-		nodelay(stdscr, TRUE);
-	}*/
 	else if (introduce_contestants(vm))
 		return (free_all(vm));
 	if (launch_vm(vm) == vm->dump && vm->vis == 0 && vm->dump >= 0)

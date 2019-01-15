@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/19 18:57:47 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 19:20:14 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 19:41:40 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -80,6 +80,9 @@ int				check_proc_lives(t_vm *vm)
 			if (start->proc[i] && ctd_vs_lives(start->proc[i], vm))
 			{
 				verb_proc_lives(vm, start, i);
+				if (vm->vis)
+					unset_cursor_color(vm->win->matrix, start->proc[i]->id,
+							start->proc[i]->pc % MEM_SIZE);
 				free_proc(&start->proc[i], vm);
 			}
 		}

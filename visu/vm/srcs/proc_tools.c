@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/30 18:07:10 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 13:29:38 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 19:42:47 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@ int				fill_proc(t_proc *proc, t_vm *vm, int id, int mempos)
 	proc->id = id;
 	proc->pc = mempos;
 	if (vm->vis)
-		set_cursor_color(vm->win->matrix, id, mempos % MEM_SIZE);
+		set_cursor_color(vm->win->matrix, proc->id, mempos % MEM_SIZE);
 	if ((proc->type = vm->mem[mempos]) < 1 || proc->type > 16)
 	{
 		proc->lastlive = 1;
@@ -62,7 +62,7 @@ int				fill_proc(t_proc *proc, t_vm *vm, int id, int mempos)
 	proc->size = calc_size(proc);
 	proc->carry = 0;
 	proc->lives = 0;
-	proc->lastlive = 1;
+	proc->lastlive = 0;
 	fill_paramval(proc, vm);
 	return (1);
 }

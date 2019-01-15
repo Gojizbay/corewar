@@ -6,7 +6,7 @@
 /*   By: srepelli <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/18 19:59:21 by srepelli     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 19:20:19 by bodibon     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 18:20:13 by bodibon     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -106,6 +106,8 @@ static int		get_champs_n(t_vm *vm, int ac, char **av, int i)
 		else if (!(champs = fill_champ(fd, champs, vm, ac - ++i)))
 			return (1);
 	}
+	if (vm->vis)
+		write_info_par(vm);
 	return (0);
 }
 
@@ -129,5 +131,7 @@ int				get_champs(int ac, int i, t_vm *vm, char **av)
 		else if (!(champs = fill_champ(fd, champs, vm, ac - ++i)))
 			return (champ_error(av[i - 1]));
 	}
+	if (vm->vis)
+		write_info_par(vm);
 	return (0);
 }
